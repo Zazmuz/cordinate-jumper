@@ -5,7 +5,7 @@ class Level():
     def __init__(self, id):
         self.id = id
         self.points = self.load_points()
-        self.functions = [LinearFunction(1, 1)]
+        self.functions = [Function(lambda x : 8 - (x - 5)**2/4)]
 
     def load_points(self):
         p = [

@@ -42,11 +42,3 @@ class Grid():
             screen.set_at((X, Y-1), function.color)
             screen.set_at((X, Y), function.color)
             screen.set_at((X, Y+1), function.color)
-
-            for i in range(0, WIDTH):
-                screen.set_at((i, 100), (0,255,0))
-            screen.set_at((400, 100), (0,255,0))
-            screen.set_at((400, 101), (0,255,0))
-            screen.set_at((401, 100), (0,255,0))
-
-        function.k -= 0.1
