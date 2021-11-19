@@ -16,9 +16,14 @@ class Game():
                 if event.key == pg.K_SPACE:
                     self.grid.scale += 2
 
+                if event.key == pg.K_ESCAPE:
+                    exit(0)
+
         self.grid.draw()
         for point in self.level.points:
             self.grid.draw_point(point, 8)
+        for function in self.level.functions:
+            self.grid.draw_function(function)
 
 game = Game()
 

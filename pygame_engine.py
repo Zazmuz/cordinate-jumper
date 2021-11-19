@@ -9,10 +9,13 @@ from ctypes import windll
 pg.init()
 
 
-
+# Found this approach on stackover
+# Probably only windows compatible
 ctypes.windll.user32.SetProcessDPIAware()
 true_res = (windll.user32.GetSystemMetrics(0),windll.user32.GetSystemMetrics(1))
 WIDTH, HEIGHT = true_res
+
+
 # pygame.display.set_mode(true_res,pygame.Fullscreen)
 #
 # info = pg.display.Info() # You have to call this before pygame.display.set_mode()
