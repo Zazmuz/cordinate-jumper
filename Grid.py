@@ -33,6 +33,7 @@ class Grid():
         pg.draw.circle(screen, (200, 50, 50), (x, y), radius)
 
     def draw_function(self, function):
+        last_Y = None
         for pixel_x in range(WIDTH):
             actual_x = pixel_x / self.scale - self.x_offset
             actual_y = function.function(actual_x)
@@ -42,3 +43,12 @@ class Grid():
             screen.set_at((X, Y-1), function.color)
             screen.set_at((X, Y), function.color)
             screen.set_at((X, Y+1), function.color)
+
+            if last_Y is not None:
+                iterating_range = range(last_Y, Y + 1) if Y >= last_Y else range(Y, last_Y + 1)
+
+                for yp in iterating_range:
+                    screen.set_at((X, yp), function.color)
+            else:
+                screen.set_at((X, Y), function.color)
+            last_Y = Y

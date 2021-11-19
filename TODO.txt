@@ -1,0 +1,7 @@
+Fix input for user (function input, maybe give integer options for k & m?)
+
+Decide upon gameplay
+
+Fix player sprite
+
+Make levels
