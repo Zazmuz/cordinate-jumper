@@ -11,6 +11,7 @@ class Game():
         self.input = Input()
 
     def game_loop(self):
+        global from_input
         EVENTS = pg.event.get()
         for event in EVENTS:
             if event.type == pg.QUIT:
@@ -41,10 +42,20 @@ class Game():
                 self.grid.draw_function(function)
             self.grid.draw_player(player)
 
-        self.input.draw()
-        self.input.take_input(EVENTS)
+        if from_input == None:
+            self.input.draw()
+            self.input.take_input(EVENTS)
+            from_input = self.input.function
+            if from_input != None:
+                player.functions.append(self.input.function)
+                from_input = 0
+                print("here")
+
+
+from_input = None
 
 game = Game()
+
 
 while True:
 

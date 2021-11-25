@@ -1,4 +1,5 @@
 from pygame_engine import *
+from Function import Function, PolynomialFuntion
 
 def multiply(arr):
     res = 1
@@ -31,36 +32,32 @@ class Input():
 
     def get_function(self, string):
         print(string)
-        s = string.replace(" ", "")[2:]
-        sep = s.split("+")
+        string = string[4:].split("+")
 
-        lambdas = []
-        for j in sep:
-            to_multiply = j.split("*")
-            funcs = [lambda x : x] + [None] * len(to_multiply)
+        coefficients = [0]*100
 
-            for M in range(len(to_multiply)):
-                m = to_multiply[M]
-                if m == "x":
-                    funcs[M+1] = lambda x : x
+        for add in string:
+            multiply = add.split("*")
 
-                elif all([letter in "1234567890" for letter in m]):
-                    funcs[M+1] = lambda x : int(m)
+            degree = 0
+            k = 1
+            for i in multiply:
+                if i == "x":
+                    degree += 1
+                elif all([j in "1234567890" for j in i]):
+                    k *= int(i)
 
-                else:
-                    return False
+            coefficients[degree] += k
 
-            lambdas.append(lambda x : multiply([f(x) for f in funcs]))
+        maximum_degree = 0
+        for i in range(100):
+            if coefficients[i] != 0:
+                maximum_degree = i + 1
 
+        function = PolynomialFuntion(maximum_degree)
+        function.coefficient = coefficients[:maximum_degree]
+        self.function = function
 
-        func = lambda x : sum([l(i) for l in lambdas])
-
-
-        for i in range(10):
-            print(i,func(i))
-
-
-        print(s)
 
     def take_input(self, EVENTS):
         for event in EVENTS:
@@ -77,3 +74,4 @@ class Input():
                     l = event.unicode
                     if l in "1234567890x+* ":
                         self.input_string += l
+        return -1
