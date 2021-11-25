@@ -1,4 +1,6 @@
 from pygame_engine import *
+from random import randint
+
 
 class Grid():
     def __init__(self):
@@ -52,3 +54,8 @@ class Grid():
             else:
                 screen.set_at((X, Y), function.color)
             last_Y = Y
+
+    def draw_player(self, player):
+        x = self.scale * (self.x_offset + player.x)
+        y = self.scale * (self.y_offset + player.y)
+        pg.draw.circle(screen, (100, 100, randint(155, 200)), (x, HEIGHT - y), 15)
