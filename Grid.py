@@ -28,11 +28,11 @@ class Grid():
         for horizontal_gridline_y in range(y_axis_start % self.scale, HEIGHT, self.scale):
             pg.draw.rect(screen, gridline_color, (0, HEIGHT - horizontal_gridline_y, WIDTH, self.gridline_thickness))
 
-    def draw_point(self, point, radius):
+    def draw_point(self, point, radius, color):
         x, y = point.x, point.y
         x = self.scale * (self.x_offset + x)
         y = HEIGHT - self.scale * (self.y_offset + y)
-        pg.draw.circle(screen, (200, 50, 50), (x, y), radius)
+        pg.draw.circle(screen, color, (x, y), radius)
 
     def draw_function(self, function):
         last_Y = None

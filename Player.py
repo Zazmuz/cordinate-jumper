@@ -21,6 +21,8 @@ class Player():
         if any([self.can_reach[i] and passes_through[i] for i in range(self.number_of_points)]):
             for i in range(self.number_of_points):
                 if passes_through[i]: self.can_reach[i] = True
+        for i in range(self.number_of_points):
+            self.points[i].reachable = self.can_reach[i]
         print(*self.can_reach)
 
     def add_function(self, function):

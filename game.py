@@ -43,7 +43,11 @@ class Game():
         self.grid.draw()
         for player in self.level.players:
             for point in player.points:
-                self.grid.draw_point(point, 8)
+                if point.reachable:
+                    color = (50,150,50)
+                else:
+                    color = (150,50,50)
+                self.grid.draw_point(point, 8, color)
             for function in player.functions:
                 self.grid.draw_function(function)
             self.grid.draw_player(player)
