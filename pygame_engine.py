@@ -7,6 +7,7 @@ from ctypes import windll
 # os.environ['SDL_VIDEO_CENTERED'] = '1' # You have to call this before pygame.init()
 
 pg.init()
+pg.font.init()
 
 
 # Found this approach on stackover
