@@ -5,7 +5,7 @@ class Function():
 
 
 class LinearFunction(Function):
-    def __init__(self, k, m): # y = kx + m
+    def __init__(self, k, m):  # y = kx + m
         self.color = (50, 50, 155)
         self.k = k
         self.m = m
@@ -13,12 +13,12 @@ class LinearFunction(Function):
     def function(self, x):
         return x * self.k + self.m
 
+
 class PolynomialFuntion(Function):
     def __init__(self, max_degree):
         self.max_degree = max_degree
-        self.coefficient = [0]*max_degree
+        self.coefficient = [0] * max_degree
         self.color = (50, 50, 155)
-        
 
     def function(self, x):
         ans = self.coefficient[0]
