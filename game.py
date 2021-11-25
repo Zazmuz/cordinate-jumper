@@ -11,6 +11,7 @@ class Game():
         self.input = Input()
 
     def game_loop(self):
+        wait_iteration = False
         global from_input
         EVENTS = pg.event.get()
         for event in EVENTS:
@@ -34,6 +35,11 @@ class Game():
                         Function(lambda x : 5)
                     )
 
+                if event.key == pg.K_RETURN and from_input is not None:
+                    from_input = None
+                    wait_iteration = True
+
+        if wait_iteration: return
         self.grid.draw()
         for player in self.level.players:
             for point in player.points:
@@ -47,7 +53,8 @@ class Game():
             self.input.take_input(EVENTS)
             from_input = self.input.function
             if from_input != None:
-                player.functions.append(self.input.function)
+                player.add_function(self.input.function)
+                self.input = Input()
                 from_input = 0
                 print("here")
 
@@ -55,7 +62,6 @@ class Game():
 from_input = None
 
 game = Game()
-
 
 while True:
 
